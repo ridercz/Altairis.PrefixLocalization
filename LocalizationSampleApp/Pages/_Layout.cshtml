@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name">
+<head>
+    <meta http-equiv="content-language" content="@System.Globalization.CultureInfo.CurrentUICulture.Name" />
+    <title>@UI.Title</title>
+</head>
+<body>
+    <header>
+        <h1>@UI.Title</h1>
+        <p><em>@UI.Description</em></p>
+    </header>
+    <nav>
+        <a asp-page="Index">@UI.HomePageTitle</a> |
+        <a asp-page="Product" asp-route-productId="1234">@UI.ProductPageTitle</a> |
+        <a asp-page="Contact">@UI.ContactPageTitle</a>
+    </nav>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        @{ var locInfo = this.Context.Features.Get<Altairis.PrefixLocalization.PrefixLocalizationInfo>(); }
+        <ul>
+            @foreach (var locale in locInfo.SupportedLocales) {
+                <li>
+                    @if (locale.IsCurrent) {
+                        <span>@locale.UiCulture.NativeName</span>
+                    } else {
+                        <a href="/@locale.Prefix">@locale.UiCulture.NativeName</a>
+                    }
+                </li>
+            }
+        </ul>
+    </footer>
+</body>
+</html>

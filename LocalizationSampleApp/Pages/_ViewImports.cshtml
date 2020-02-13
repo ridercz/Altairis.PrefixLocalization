@@ -1,0 +1,11 @@
+﻿// Place all pages in a specific namespace
+@namespace LocalizationSampleApp.Pages
+// Import resource namespace
+@using LocalizationSampleApp.Resources
+
+// Add standard tag helpers
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+// Remove the AnchorTagHelper, so we can replace it with the PrefixLocalization one
+@removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Altairis.PrefixLocalization
