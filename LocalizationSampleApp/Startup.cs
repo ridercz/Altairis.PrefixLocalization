@@ -13,8 +13,9 @@ namespace LocalizationSampleApp {
             // Register prefix localization library
             services.AddPrefixLocalization(options => {
                 // Define supported locales
-                options.LocaleMappings.Add(new PrefixToCultureMapping("cesky", "cs-CZ"));
-                options.LocaleMappings.Add(new PrefixToCultureMapping("english", "en-US"));
+                options.LocaleMappings.Add(new PrefixToCultureMapping("cesky", "cs-CZ", "cs"));
+                options.LocaleMappings.Add(new PrefixToCultureMapping("english", "en-US", "en"));
+                options.LocaleMappings.Add(new PrefixToCultureMapping("deutsch", "de-DE", "de"));
                 // Add ignored paths
                 options.IgnorePaths.Add("^/content/.+");
             });
