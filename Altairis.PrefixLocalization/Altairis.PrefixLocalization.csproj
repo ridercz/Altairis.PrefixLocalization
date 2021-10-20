@@ -7,14 +7,13 @@
     <Authors>Michal A. Valášek</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Prefix-based route localization for ASP.NET Razor Pages</Description>
-    <Copyright>(c) Michal A. Valášek - Altairis, 2020</Copyright>
+    <Copyright>(c) Michal A. Valášek - Altairis, 2020-2021</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>NuGet-64x64.png</PackageIcon>
-    <PackageIconUrl />
     <RepositoryUrl>https://github.com/ridercz/Altairis.PrefixLocalization.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/ridercz/Altairis.PrefixLocalization</PackageProjectUrl>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
