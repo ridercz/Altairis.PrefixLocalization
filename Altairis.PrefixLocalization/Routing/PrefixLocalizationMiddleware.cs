@@ -45,7 +45,16 @@ namespace Altairis.PrefixLocalization.Routing {
 
                     // Set the locale name
                     context.Features.Set(new PrefixLocalizationInfo(this.options.LocaleMappings, currentLocaleMapping.Prefix));
-                    //context.Items[PrefixLocalizationOptions.LocaleContextItemName] = currentLocaleMapping.Prefix;
+
+                    // Set cookie
+                    if (this.options.UseCookie && !currentLocaleMapping.Prefix.Equals(context.Request.Cookies[this.options.CookieName])) {
+                        var co = new CookieOptions {
+                            MaxAge = this.options.CookieMaxAge,
+                            HttpOnly = true,
+                            IsEssential = false
+                        };
+                        context.Response.Cookies.Append(this.options.CookieName, currentLocaleMapping.Prefix, co);
+                    }
                 }
             }
 
@@ -56,6 +65,12 @@ namespace Altairis.PrefixLocalization.Routing {
         private string GetFallbackLocalePrefix(HttpContext context) {
             // Use static default locale if configured
             if (this.options.LocaleMappings.Any(x => x.Prefix.Equals(this.options.DefaultLocale, StringComparison.OrdinalIgnoreCase))) return this.options.DefaultLocale;
+
+            // Use cookie
+            if (this.options.UseCookie) {
+                var lastKnownLocale = context.Request.Cookies[this.options.CookieName];
+                if (!string.IsNullOrEmpty(lastKnownLocale) && this.options.LocaleMappings.Any(x => x.Prefix.Equals(lastKnownLocale, StringComparison.OrdinalIgnoreCase))) return lastKnownLocale;
+            }
 
             // Use Accept-Language header
             if (this.options.UseAcceptLanguageHeader) {
@@ -73,8 +88,7 @@ namespace Altairis.PrefixLocalization.Routing {
                 foreach (var language in orderedLanguages) {
                     try {
                         ci = new CultureInfo(language);
-                    }
-                    catch (CultureNotFoundException) {
+                    } catch (CultureNotFoundException) {
                         continue;
                     }
                     var lm = this.options.LocaleMappings.FirstOrDefault(x => x.UiCulture.Name.Equals(ci.Name, StringComparison.OrdinalIgnoreCase));
