@@ -18,18 +18,22 @@
         @RenderBody()
     </main>
     <footer>
-        @{ var locInfo = this.Context.Features.Get<Altairis.PrefixLocalization.PrefixLocalizationInfo>(); }
-        <ul>
-            @foreach (var locale in locInfo.SupportedLocales) {
-                <li>
-                    @if (locale.IsCurrent) {
-                        <span>@locale.UiCulture.NativeName</span>
-                    } else {
-                        <a href="/@locale.Prefix">@locale.UiCulture.NativeName</a>
+        @{
+            var locInfo = this.Context.Features.Get<Altairis.PrefixLocalization.PrefixLocalizationInfo>();
+            if (locInfo != null) {
+                <ul>
+                    @foreach (var locale in locInfo.SupportedLocales) {
+                        <li>
+                            @if (locale.IsCurrent) {
+                                <span>@locale.UiCulture.NativeName</span>
+                            } else {
+                                <a href="/@locale.Prefix">@locale.UiCulture.NativeName</a>
+                            }
+                        </li>
                     }
-                </li>
+                </ul>
             }
-        </ul>
+        }
     </footer>
 </body>
 </html>

@@ -14,6 +14,7 @@
     <RepositoryUrl>https://github.com/ridercz/Altairis.PrefixLocalization.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/ridercz/Altairis.PrefixLocalization</PackageProjectUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

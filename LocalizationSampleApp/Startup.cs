@@ -7,7 +7,7 @@ using Altairis.PrefixLocalization;
 namespace LocalizationSampleApp {
     public class Startup {
         public void ConfigureServices(IServiceCollection services) {
-// Register Razor Pages
+            // Register Razor Pages
             services.AddRazorPages();
 
             // Register prefix localization library
@@ -33,10 +33,8 @@ namespace LocalizationSampleApp {
             // You may use static middleware as a first one, if you want all static files excluded from localization
             app.UseStaticFiles();
 
-
             // This is not exactly needed, but it helps to see error codes
-            app.UseStatusCodePages();
-
+            app.UseStatusCodePagesWithReExecute("/english/Errors/{0}");
 
             // This is common application initialization
             app.UseRouting();

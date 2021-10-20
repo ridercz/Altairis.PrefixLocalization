@@ -34,7 +34,7 @@ namespace Altairis.PrefixLocalization {
 
         public override void Process(TagHelperContext context, TagHelperOutput output) {
             var locInfo = this.ViewContext.HttpContext.Features.Get<PrefixLocalizationInfo>();
-            this.RouteValues[PrefixLocalizationOptions.LocaleRouteParameterName] = locInfo.CurrentPrefix;
+            if (locInfo != null) this.RouteValues[PrefixLocalizationOptions.LocaleRouteParameterName] = locInfo.CurrentPrefix;
             base.Process(context, output);
         }
     }

@@ -1,0 +1,6 @@
+﻿@page "{statusCode}"
+@{ ViewBag.Title = "HTTP Error " + this.RouteData.Values["statusCode"]; }
+<i class="fal fa-bug fr" style="font-size:250%;"></i>
+<h1>@ViewBag.Title</h1>
+<p>[CS] V průběhu zpracování vašeho požadavku došlo k chybě.</p>
+<p>[EN] There was an error during processing of your request.</p>
