@@ -76,7 +76,7 @@ namespace Altairis.PrefixLocalization.Routing {
             if (this.options.UseAcceptLanguageHeader) {
                 // Get Accept-Language header
                 var acceptLanguageHeader = context.Request.GetTypedHeaders().AcceptLanguage;
-                if (acceptLanguageHeader == null || acceptLanguageHeader.Count == 0) return null;
+                if (acceptLanguageHeader == null || acceptLanguageHeader.Count == 0) return this.options.LocaleMappings.First().Prefix;
 
                 // Get sorted list of languages
                 var languages = acceptLanguageHeader.AsEnumerable();
